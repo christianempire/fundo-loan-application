@@ -22,8 +22,7 @@ export default async function DeniedPage({ searchParams }: PageProps<"/denied">)
       <p className="mt-3 text-sm">{denialReason}</p>
 
       <p className="mt-3 text-sm text-muted">
-        Nothing was saved. You are entitled to ask why this decision was made — reply to the email
-        we sent and a person will take a look.
+        Nothing was saved. You can ask us to explain this decision, and a person will review it.
       </p>
 
       <Link
