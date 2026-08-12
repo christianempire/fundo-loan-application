@@ -31,10 +31,10 @@ namespace Fundo.Loans.Infrastructure.Persistence.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTimeOffset>("SubmittedAt")
+                    b.Property<DateTime>("SubmittedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTimeOffset>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -66,7 +66,7 @@ namespace Fundo.Loans.Infrastructure.Persistence.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTimeOffset>("RegisteredAt")
+                    b.Property<DateTime>("RegisteredAt")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("SsnHash")
@@ -79,7 +79,7 @@ namespace Fundo.Loans.Infrastructure.Persistence.Migrations
                         .HasMaxLength(4)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTimeOffset>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("TEXT");
 
                     b.ComplexProperty(typeof(Dictionary<string, object>), "Address", "Fundo.Loans.Domain.Customers.Customer.Address#Address", b1 =>
@@ -132,17 +132,17 @@ namespace Fundo.Loans.Infrastructure.Persistence.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTimeOffset?>("NextAttemptAt")
+                    b.Property<DateTime?>("NextAttemptAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTimeOffset>("OccurredAt")
+                    b.Property<DateTime>("OccurredAt")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Payload")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTimeOffset?>("ProcessedAt")
+                    b.Property<DateTime?>("ProcessedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Type")

@@ -23,7 +23,7 @@ public sealed class Customer
         Id = Guid.CreateVersion7();
         SsnHash = ssnHash;
         SsnLast4 = ssnLast4;
-        RegisteredAt = DateTimeOffset.UtcNow;
+        RegisteredAt = DateTime.UtcNow;
     }
 
     public Guid Id { get; private set; }
@@ -41,9 +41,9 @@ public sealed class Customer
 
     public Address Address { get; private set; }
 
-    public DateTimeOffset RegisteredAt { get; private set; }
+    public DateTime RegisteredAt { get; private set; }
 
-    public DateTimeOffset UpdatedAt { get; private set; }
+    public DateTime UpdatedAt { get; private set; }
 
     public static Customer Register(
         string ssnHash,
@@ -68,6 +68,6 @@ public sealed class Customer
         LastName = lastName.Trim();
         CompanyName = companyName.Trim();
         Address = address;
-        UpdatedAt = DateTimeOffset.UtcNow;
+        UpdatedAt = DateTime.UtcNow;
     }
 }

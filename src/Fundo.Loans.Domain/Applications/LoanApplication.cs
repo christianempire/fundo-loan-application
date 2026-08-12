@@ -16,7 +16,7 @@ public sealed class LoanApplication
         Id = Guid.CreateVersion7();
         CustomerId = customerId;
         RequestedAmount = requestedAmount;
-        SubmittedAt = DateTimeOffset.UtcNow;
+        SubmittedAt = DateTime.UtcNow;
         UpdatedAt = SubmittedAt;
     }
 
@@ -26,9 +26,9 @@ public sealed class LoanApplication
 
     public decimal RequestedAmount { get; private set; }
 
-    public DateTimeOffset SubmittedAt { get; private set; }
+    public DateTime SubmittedAt { get; private set; }
 
-    public DateTimeOffset UpdatedAt { get; private set; }
+    public DateTime UpdatedAt { get; private set; }
 
     public static LoanApplication Open(Guid customerId, decimal requestedAmount)
     {
@@ -50,6 +50,6 @@ public sealed class LoanApplication
         }
 
         RequestedAmount = requestedAmount;
-        UpdatedAt = DateTimeOffset.UtcNow;
+        UpdatedAt = DateTime.UtcNow;
     }
 }

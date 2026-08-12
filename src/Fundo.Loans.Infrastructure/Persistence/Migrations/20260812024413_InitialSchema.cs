@@ -21,8 +21,8 @@ namespace Fundo.Loans.Infrastructure.Persistence.Migrations
                     FirstName = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
                     LastName = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
                     CompanyName = table.Column<string>(type: "TEXT", maxLength: 200, nullable: false),
-                    RegisteredAt = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
+                    RegisteredAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
                     city = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
                     postal_code = table.Column<string>(type: "TEXT", maxLength: 10, nullable: false),
                     state = table.Column<string>(type: "TEXT", maxLength: 2, nullable: false),
@@ -40,8 +40,8 @@ namespace Fundo.Loans.Infrastructure.Persistence.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     CustomerId = table.Column<Guid>(type: "TEXT", nullable: false),
                     RequestedAmount = table.Column<decimal>(type: "TEXT", precision: 18, scale: 2, nullable: false),
-                    SubmittedAt = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "TEXT", nullable: false)
+                    SubmittedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,10 +55,10 @@ namespace Fundo.Loans.Infrastructure.Persistence.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Type = table.Column<string>(type: "TEXT", maxLength: 200, nullable: false),
                     Payload = table.Column<string>(type: "TEXT", nullable: false),
-                    OccurredAt = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
-                    ProcessedAt = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
+                    OccurredAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ProcessedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
                     AttemptCount = table.Column<int>(type: "INTEGER", nullable: false),
-                    NextAttemptAt = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
+                    NextAttemptAt = table.Column<DateTime>(type: "TEXT", nullable: true),
                     LastError = table.Column<string>(type: "TEXT", maxLength: 1000, nullable: true)
                 },
                 constraints: table =>

@@ -22,7 +22,7 @@ public sealed class OutboxMessage
         Id = Guid.CreateVersion7();
         Type = type;
         Payload = payload;
-        OccurredAt = DateTimeOffset.UtcNow;
+        OccurredAt = DateTime.UtcNow;
     }
 
     public Guid Id { get; private set; }
@@ -32,14 +32,14 @@ public sealed class OutboxMessage
 
     public string Payload { get; private set; }
 
-    public DateTimeOffset OccurredAt { get; private set; }
+    public DateTime OccurredAt { get; private set; }
 
-    public DateTimeOffset? ProcessedAt { get; private set; }
+    public DateTime? ProcessedAt { get; private set; }
 
     public int AttemptCount { get; private set; }
 
     /// <summary>When the processor may try again. Null means "immediately".</summary>
-    public DateTimeOffset? NextAttemptAt { get; private set; }
+    public DateTime? NextAttemptAt { get; private set; }
 
     public string? LastError { get; private set; }
 
@@ -47,7 +47,7 @@ public sealed class OutboxMessage
 
     public void MarkProcessed()
     {
-        ProcessedAt = DateTimeOffset.UtcNow;
+        ProcessedAt = DateTime.UtcNow;
         AttemptCount++;
         NextAttemptAt = null;
         LastError = null;
@@ -62,7 +62,7 @@ public sealed class OutboxMessage
     {
         AttemptCount++;
         LastError = Truncate(error, maxLength: 1000);
-        NextAttemptAt = DateTimeOffset.UtcNow.Add(retryIn);
+        NextAttemptAt = DateTime.UtcNow.Add(retryIn);
     }
 
     private static string Truncate(string value, int maxLength) =>
