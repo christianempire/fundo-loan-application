@@ -3,6 +3,7 @@ using Fundo.Loans.Application.LoanApplications;
 using Fundo.Loans.Domain.Decisions;
 using Fundo.Loans.Domain.Decisions.Rules;
 using Fundo.Loans.Infrastructure.Decisions;
+using Fundo.Loans.Infrastructure.ExternalService;
 using Fundo.Loans.Infrastructure.Persistence;
 using Fundo.Loans.Infrastructure.Persistence.Outbox;
 using Fundo.Loans.Infrastructure.Persistence.Repositories;
@@ -33,8 +34,35 @@ public static class DependencyInjection
         services.AddSingleton<ISsnHasher, HmacSsnHasher>();
 
         services.AddDecisionRules(configuration);
+        services.AddOutboxDelivery(configuration);
 
         services.AddScoped<SubmitLoanApplicationHandler>();
+
+        return services;
+    }
+
+    /// <summary>
+    /// The delivery half of the outbox: the client that talks to the external service
+    /// and the background service that drains the table into it.
+    /// </summary>
+    private static IServiceCollection AddOutboxDelivery(
+        this IServiceCollection services,
+        IConfiguration configuration)
+    {
+        services.AddOptions<OutboxOptions>()
+            .Bind(configuration.GetSection(OutboxOptions.SectionName));
+
+        var externalService = configuration
+            .GetSection(ExternalServiceOptions.SectionName)
+            .Get<ExternalServiceOptions>() ?? new ExternalServiceOptions();
+
+        services.AddHttpClient<ICustomerSyncClient, HttpCustomerSyncClient>(client =>
+        {
+            client.BaseAddress = new Uri(externalService.BaseUrl);
+            client.Timeout = TimeSpan.FromSeconds(externalService.TimeoutSeconds);
+        });
+
+        services.AddHostedService<OutboxProcessor>();
 
         return services;
     }
