@@ -1,6 +1,13 @@
 # Fundo — Loan Application
 
-**Video walkthrough:** _(link to be added)_
+**Video walkthrough:** <https://drive.google.com/file/d/1hnZDZW_EviDQg8uUHy-eNOTBoSrmqcSW/view>
+
+| | |
+| --- | --- |
+| `0:00` | Overview, and a look at the README |
+| `3:20` | Architecture: the transaction and the outbox |
+| `5:59` | The external service receiving the data |
+| `8:21` | The application flows: approved, both denials, returning customer |
 
 A small loan application flow: a Next.js form collects an application, a rule engine on
 the .NET backend approves or denies it, approved applications are written to the database
