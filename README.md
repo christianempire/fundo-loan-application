@@ -4,10 +4,16 @@
 
 | | |
 | --- | --- |
-| `0:00` | Overview, and a look at the README |
-| `3:20` | Architecture: the transaction and the outbox |
-| `5:59` | The external service receiving the data |
-| `8:21` | The application flows: approved, both denials, returning customer |
+| `0:00` | What this is, and the stack |
+| `0:53` | The rule engine, and how a new rule gets added |
+| `1:50` | The transaction and the outbox |
+| `3:25` | The form, the SSN, and an approved application |
+| `5:25` | The external service receives it, from the background worker |
+| `6:22` | Denial by restricted state |
+| `8:08` | Denial by blacklisted SSN |
+| `9:54` | Returning customer: same SSN updates in place |
+| `12:00` | The tests |
+| `15:36` | Wrap-up |
 
 A small loan application flow: a Next.js form collects an application, a rule engine on
 the .NET backend approves or denies it, approved applications are written to the database
